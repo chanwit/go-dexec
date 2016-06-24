@@ -69,8 +69,8 @@ func (c *createContainer) create(d Docker, cmd []string) error {
 	c.opt.Config.AttachStderr = true
 	c.opt.Config.OpenStdin = true
 	c.opt.Config.StdinOnce = true
-	c.opt.Config.Cmd = nil        // clear cmd
-	c.opt.Config.Entrypoint = cmd // set new entrypoint
+	c.opt.Config.Cmd = cmd // nil        // clear cmd
+	// c.opt.Config.Entrypoint = cmd // set new entrypoint
 
 	container, err := d.Client.CreateContainer(c.opt)
 	if err != nil {

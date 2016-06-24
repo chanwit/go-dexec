@@ -19,8 +19,8 @@ type Docker struct {
 // arguments using specified execution method.
 //
 // For each new Cmd, you should create a new instance for "method" argument.
-func (d Docker) Command(method Execution, name string, arg ...string) *Cmd {
-	return &Cmd{Method: method, Path: name, Args: arg, docker: d}
+func (d Docker) Command(method Execution, /*name string,*/ arg ...string) *Cmd {
+	return &Cmd{Method: method, /*Path: name,*/ Args: arg, docker: d}
 }
 
 // Cmd represents an external command being prepared or run.
@@ -95,7 +95,8 @@ func (c *Cmd) Start() error {
 		c.Stderr = ioutil.Discard
 	}
 
-	cmd := append([]string{c.Path}, c.Args...)
+	cmd := c.Args
+	// cmd := append([]string{c.Path}, c.Args...)
 	if err := c.Method.create(c.docker, cmd); err != nil {
 		return err
 	}

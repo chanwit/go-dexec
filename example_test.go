@@ -15,7 +15,7 @@ func ExampleCmd_Output() {
 	m, _ := dexec.ByCreatingContainer(docker.CreateContainerOptions{
 		Config: &docker.Config{Image: "busybox"}})
 
-	cmd := d.Command(m, "echo", `I am running inside a container!`)
+	cmd := d.Command(m, /*"echo",*/ `I am running inside a container!`)
 	b, err := cmd.Output()
 	if err != nil {
 		log.Fatal(err)
